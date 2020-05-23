@@ -1,4 +1,6 @@
 export default {
+    MAX_ATTACHMENT_SIZE: 5000000,
+    STRIPE_KEY: "pk_test_tf70Za50An9W8hrBBbP1THRk00NejMtHti",
     s3: {
         REGION: "eu-west-1",
         BUCKET: "sweet-treats-product-images"

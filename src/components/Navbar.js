@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ auth, handleLogout }) {
     return (
         <NavbarContainer>
             <div>
@@ -12,20 +12,34 @@ function Navbar() {
             </div>
             <div>
                 <NavList>
-                    <NavItem>
-                        <Link to="/signup">
-                            <p>Sign up</p>
-                        </Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/login">
-                            <p>Log in</p>
-                        </Link>
-                    </NavItem>
+                    { auth
+                        ?
+                            <>
+                                <NavItem>
+                                    <Link to="/settings">
+                                        Settings
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <button type="button" onClick={() => handleLogout()}>Log out</button>
+                                </NavItem>
+                            </>
+                        :
+                            <>
+                                <NavItem>
+                                    <Link to="/signup">
+                                        <p>Sign up</p>
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link to="/login">
+                                        <p>Log in</p>
+                                    </Link>
+                                </NavItem>
+                            </>
+                    }
                 </NavList>
-                
             </div>
-            
         </NavbarContainer>
     );
 }
