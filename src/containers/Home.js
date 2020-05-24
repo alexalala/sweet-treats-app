@@ -50,7 +50,16 @@ function Home() {
     function renderLander() {
         return (
             <div>
-                <h2>Purchase some sweet treats for you or someone you love</h2>
+                <h2>Welcome to Sweet Treats Delivered!</h2>
+                <h3>Here you can purchase some sweet treats for you or someone you love</h3>
+                <div>
+                    <StyledLink to="/login">
+                        Login
+                    </StyledLink>
+                    <StyledLink to="/signup">
+                        Signup
+                    </StyledLink>
+                </div>
             </div>
         );
     }
@@ -96,5 +105,15 @@ const ButtonLink = styled.div`
 `;
 
 const Product = styled.li`
+    font-size: 1.25rem;
+`;
+
+const StyledLink = styled(Link)`
+    color: white;
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 26%;
+    text-decoration: none;
     font-size: 1.25rem;
 `;
