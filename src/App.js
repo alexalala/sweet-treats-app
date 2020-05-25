@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import Routes from "./Routes";
 import Navbar from './components/Navbar';
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import { onError } from "./libs/errorLib";
 import { AppContext } from "./libs/contextLib";
@@ -46,9 +47,11 @@ function App() {
         <header className="App-header">
           <Navbar auth={isAuthenticated} handleLogout={handleLogout} />
         </header>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-          <Routes />
-        </AppContext.Provider>
+        <ErrorBoundary>
+          <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+            <Routes />
+          </AppContext.Provider>
+        </ErrorBoundary>
       </div>
   );
 }
