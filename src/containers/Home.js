@@ -28,7 +28,7 @@ function Home() {
     }, [isAuthenticated]);
     
     function loadProducts() {
-        return API.put("product", "/product");
+        return API.get("product", "/product");
     }
 
     function renderProductsList(products) {
