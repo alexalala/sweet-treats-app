@@ -9,7 +9,7 @@
 # Production context: All deploys to the main
 # repository branch will inherit these settings.
 [context.production]
-  command = "REACT_APP_STAGE=prod NODE_ENV=prod yarn build"
+  command = "REACT_APP_STAGE=prod yarn build"
 # Deploy Preview context: All Deploy Previews
 # will inherit these settings.
 [context.deploy-preview]
