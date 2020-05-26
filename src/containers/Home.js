@@ -28,7 +28,7 @@ function Home() {
     }, [isAuthenticated]);
     
     function loadProducts() {
-        return API.get("product", "/invalid-path");
+        return API.put("product", "/product");
     }
 
     function renderProductsList(products) {
