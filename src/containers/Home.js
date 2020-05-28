@@ -91,7 +91,7 @@ const ProductList = styled.ul`
     align-items: center;
     padding-left: 0;
     > a {
-        color: white;
+        color: black;
         text-decoration: none;
         margin: 1rem;
     }

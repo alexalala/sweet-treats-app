@@ -38,6 +38,6 @@ const Button = styled.button`
     align-items: center;
 
     &:disabled {
-        color: white;
+        color: black;
     }
 `;

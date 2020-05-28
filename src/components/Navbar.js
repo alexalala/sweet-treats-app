@@ -53,7 +53,7 @@ const NavbarContainer = styled.div`
     width: 100%;
 
     a {
-        color: white;
+        color: black;
         text-decoration: none;
     }
     h1 {

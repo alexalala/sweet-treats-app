@@ -169,7 +169,7 @@ const CurrentContainer = styled.div`
 `;
 
 const ImageLink = styled.a`
-    color: whitesmoke;
+    color: black;
     margin: auto 0;
 `;
 
