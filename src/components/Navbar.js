@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
+import { ReactComponent as LogoSvg } from '../assets/sweet-treats-logo.svg';
+
 function Navbar({ auth, handleLogout }) {
     return (
         <NavbarContainer>
             <div>
                 <Link to="/">
-                    <h1>Sweet Treats</h1>
+                    <LogoSvg />
                 </Link>
             </div>
             <div>
