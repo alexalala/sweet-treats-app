@@ -5,7 +5,7 @@ import { API, Storage } from "aws-amplify";
 
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
-import LoaderButton from "../components/LoaderButton";
+import Button from "../components/simple/Button";
 import config from "../config";
 
 export default function Product() {
@@ -132,19 +132,19 @@ export default function Product() {
                         <input onChange={handleFileChange} type="file" />
                     </div>
                     <ButtonContainer>
-                        <LoaderButton
+                        <Button
                             type="submit"
                             isLoading={isLoading}
                             disabled={!validateForm()}
                         >
                             Save
-                        </LoaderButton>
-                        <LoaderButton
+                        </Button>
+                        <Button
                             onClick={handleDelete}
                             isLoading={isDeleting}
                         >
                             Delete
-                        </LoaderButton>
+                        </Button>
                     </ButtonContainer>
                 </form>
             )}

@@ -98,7 +98,7 @@ const ProductList = styled.ul`
 `;
 
 const ButtonLink = styled.div`
-    border: 1px solid white;
+    border: 1px solid black;
     width: 12rem;
     padding: 1rem;
     font-size: 1.25rem;
@@ -112,7 +112,7 @@ const StyledLink = styled(Link)`
     color: white;
     margin: 1rem;
     padding: 0.5rem;
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 26%;
     text-decoration: none;
     font-size: 1.25rem;

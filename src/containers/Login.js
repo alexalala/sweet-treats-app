@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
-import LoaderButton from "../components/LoaderButton";
+import Button from "../components/simple/Button";
 
 import { Auth } from "aws-amplify";
 
@@ -59,13 +59,13 @@ export default function Login() {
                         />
                     </InputLabel>
                 </InputContainer>
-                <LoaderButton 
+                <Button 
                     isLoading={isLoading}
                     disabled={!validateForm()}
                     type="submit"
                 >
                     Log in
-                </LoaderButton>
+                </Button>
             </form>
         </div>
     );

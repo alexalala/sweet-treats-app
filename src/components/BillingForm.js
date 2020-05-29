@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import styled from 'styled-components';
 
-import LoaderButton from "./LoaderButton";
+import Button from "./simple/Button";
 import { useFormFields } from "../libs/hooksLib";
 
 function BillingForm({ isLoading, onSubmit, ...props }) {
@@ -67,13 +67,13 @@ function BillingForm({ isLoading, onSubmit, ...props }) {
                     onChange={e => setIsCardComplete(e.complete)}
                 />
             </Label>
-            <LoaderButton
+            <Button
                 type="submit"
                 isLoading={isLoading}
                 disabled={!validateForm()}
             >
                 Purchase
-            </LoaderButton>
+            </Button>
         </form>
     );
 }

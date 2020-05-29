@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { API } from "aws-amplify";
 
-import LoaderButton from "../components/LoaderButton";
-import { Input, InputContainer, InputLabel } from "../components/form/FormElements";
+import Button from "../components/simple/Button";
+import { Input, InputContainer, InputLabel } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import config from "../config";
@@ -66,13 +66,13 @@ export default function AddProduct() {
                         <Input onChange={handleFileChange} type="file" id="file" />
                     </InputLabel>
                 </InputContainer>
-                <LoaderButton
+                <Button
                     type="submit"
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
                     Create
-                </LoaderButton>
+                </Button>
             </form>
         </div>
     );

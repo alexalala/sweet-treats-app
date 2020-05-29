@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import { Auth } from "aws-amplify";
 
-import LoaderButton from "../components/LoaderButton";
+import Button from "../components/simple/Button";
 
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
@@ -84,13 +84,13 @@ export default function Signup() {
                     
                     <p>Please check your email for the code.</p>
                 </InputContainer>
-                <LoaderButton
+                <Button
                     type="submit"
                     isLoading={isLoading}
                     disabled={!validateConfirmationForm()}
                 >
                     Verify
-                </LoaderButton>
+                </Button>
             </form>
         );
     }
@@ -132,13 +132,13 @@ export default function Signup() {
                     </InputLabel>
                     
                 </InputContainer>
-                <LoaderButton
+                <Button
                     type="submit"
                     isLoading={isLoading}
                     disabled={!validateForm()}
                 >
                     Signup
-                </LoaderButton>
+                </Button>
             </form>
         );
     }
