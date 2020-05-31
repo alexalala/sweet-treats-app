@@ -42,7 +42,6 @@ export default function AddProduct() {
         try {
             const attachment = file.current ? await s3Upload(file.current) : null;
             await createProduct({ name, price, description, attachment });
-            debugger;
             history.push("/");
         } catch (e) {
             onError(e);
@@ -51,7 +50,6 @@ export default function AddProduct() {
     };
 
     function createProduct(product) {
-        debugger;
         return API.post("product", "/product", {
             body: product
         });

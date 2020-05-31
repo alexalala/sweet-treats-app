@@ -27,11 +27,11 @@ export default function Product() {
         async function onLoad() {
             try {
                 const product = await loadProduct();
-                const { name, price, description, attachment } = product;
+                const { productName, price, description, attachment } = product;
                 if (attachment) {
                     product.attachmentURL = await Storage.vault.get(attachment);
                 }
-                setName(name);
+                setName(productName);
                 setPrice(price);
                 setDescription(description);
                 setProduct(product);

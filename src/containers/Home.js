@@ -35,11 +35,11 @@ function Home() {
         return [{}].concat(products).map((product, i) => i !== 0 ? (
             <Link key={product.productId} to={`/product/${product.productId}`}>
                 <Product>
-                    {product.name}
+                    {product.productName}
                 </Product>
             </Link>
         ) : (
-            <Link key="new" to="/products/new">
+            <Link key="new" to="/product/new">
                 <ButtonLink>
                     <b>{"\uFF0B"}</b> Create a new note
                 </ButtonLink>

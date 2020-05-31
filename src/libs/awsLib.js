@@ -7,7 +7,7 @@ export async function s3Upload(file) {
     // Storage.vault.put adds it to the user's unique folder in s3.
     const stored = await Storage.vault.put(filename, file, {
         contentType: file.type,
-    });
+    }).catch(err => console.log(err));
 
     // Return stored object key.
     return stored.key;
