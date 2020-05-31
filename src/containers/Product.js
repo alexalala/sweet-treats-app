@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import { API, Storage } from "aws-amplify";
 
+import { Input, TextareaInput, InputContainer, InputLabel } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import Button from "../components/simple/Button";
@@ -10,7 +11,9 @@ import config from "../config";
 
 export default function Product() {
     const [product, setProduct] = useState(null);
-    const [content, setContent] = useState("");
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const file = useRef(null);
@@ -24,11 +27,13 @@ export default function Product() {
         async function onLoad() {
             try {
                 const product = await loadProduct();
-                const { content, attachment } = product;
+                const { name, price, description, attachment } = product;
                 if (attachment) {
                     product.attachmentURL = await Storage.vault.get(attachment);
                 }
-                setContent(content);
+                setName(name);
+                setPrice(price);
+                setDescription(description);
                 setProduct(product);
             } catch (e) {
                 onError(e);
@@ -38,7 +43,11 @@ export default function Product() {
     }, [id]);
 
     function validateForm() {
-        return content.length > 0;
+        return (
+            name.length > 0 &&
+            price.length > 0 &&
+            description.length > 0
+        );
     }
 
     function formatFilename(str) {
@@ -74,7 +83,9 @@ export default function Product() {
                 attachment = await s3Upload(file.current);
             }
             await saveProduct({
-                content,
+                name,
+                price,
+                description,
                 attachment: attachment || product.attachment
             });
             history.push("/");
@@ -106,16 +117,42 @@ export default function Product() {
             <h2>Edit product</h2>
             {product && (
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextareaInput
-                            id="content"
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                        />
-                    </div>
+                    <InputContainer>
+                        <InputLabel>
+                            Product name
+                            <Input
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                id="name"
+                            />
+                        </InputLabel>
+                    </InputContainer>
+                    <InputContainer>
+                        <InputLabel>
+                            Product price
+                            <Input
+                                type="number"
+                                min="0.00"
+                                step="any"
+                                value={price}
+                                onChange={e => setPrice(e.target.value)}
+                                id="price"
+                            />
+                        </InputLabel>
+                    </InputContainer>
+                    <InputContainer>
+                        <InputLabel>
+                            Product description
+                            <TextareaInput
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                id="description"
+                            />
+                        </InputLabel>
+                    </InputContainer>
                     {product.attachment && (
-                        <CurrentContainer>
-                            <Label>Current Image:</Label>
+                        <InputContainer>
+                            <InputLabel>Current Image:</InputLabel>
                                 <ImageLink
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -123,11 +160,11 @@ export default function Product() {
                                 >
                                     {formatFilename(product.attachment)}
                                 </ImageLink>
-                        </CurrentContainer>
+                        </InputContainer>
                     )}
                     <div>
                         {!product.attachment &&
-                            <label>Choose An Image:</label>
+                            <InputLabel>Choose An Image:</InputLabel>
                         }
                         <input onChange={handleFileChange} type="file" />
                     </div>
@@ -151,22 +188,6 @@ export default function Product() {
         </div>
     );
 }
-
-const TextareaInput = styled.textarea`
-    width: 25rem;
-    font-size: 1.25rem;
-`;
-
-const Label = styled.label`
-    font-size: 1.25rem;
-    margin: 1rem;
-`;
-
-const CurrentContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-`;
 
 const ImageLink = styled.a`
     color: black;

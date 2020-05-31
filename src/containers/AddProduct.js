@@ -3,20 +3,26 @@ import { useHistory } from "react-router-dom";
 import { API } from "aws-amplify";
 
 import Button from "../components/simple/Button";
-import { Input, InputContainer, InputLabel } from "../components/simple/FormElements";
+import { Input, TextareaInput, InputContainer, InputLabel } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import config from "../config";
 
 export default function AddProduct() {
-    const [content, setContent] = useState("");
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     
     const file = useRef(null);
     const history = useHistory();
     
     function validateForm() {
-        return content.length > 0;
+        return (
+            name.length > 0 &&
+            price.length > 0 &&
+            description.length > 0
+        );
     };
 
     function handleFileChange(event) {
@@ -35,7 +41,8 @@ export default function AddProduct() {
 
         try {
             const attachment = file.current ? await s3Upload(file.current) : null;
-            await createProduct({ content, attachment });
+            await createProduct({ name, price, description, attachment });
+            debugger;
             history.push("/");
         } catch (e) {
             onError(e);
@@ -44,6 +51,7 @@ export default function AddProduct() {
     };
 
     function createProduct(product) {
+        debugger;
         return API.post("product", "/product", {
             body: product
         });
@@ -51,14 +59,40 @@ export default function AddProduct() {
 
     return (
         <div>
+            <h2>Add a new product</h2>
             <form onSubmit={handleSubmit}>
                 <InputContainer>
-                    <Input
-                        value={content}
-                        componentClass="textarea"
-                        onChange={e => setContent(e.target.value)}
-                        id="content"
-                    />
+                    <InputLabel>
+                        Product name
+                        <Input
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            id="name"
+                        />
+                    </InputLabel>
+                </InputContainer>
+                <InputContainer>
+                    <InputLabel>
+                        Product price
+                        <Input
+                            type="number"
+                            min="0.00"
+                            step="any"
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}
+                            id="price"
+                        />
+                    </InputLabel>
+                </InputContainer>
+                <InputContainer>
+                    <InputLabel>
+                        Product description
+                        <TextareaInput
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                            id="description"
+                        />
+                    </InputLabel>
                 </InputContainer>
                 <InputContainer>
                     <InputLabel>

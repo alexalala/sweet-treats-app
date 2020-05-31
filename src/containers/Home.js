@@ -34,8 +34,8 @@ function Home() {
     function renderProductsList(products) {
         return [{}].concat(products).map((product, i) => i !== 0 ? (
             <Link key={product.productId} to={`/product/${product.productId}`}>
-                <Product header={product.content.trim().split("\n")[0]}>
-                    {"Created: " + new Date(product.createdAt).toLocaleString()}
+                <Product>
+                    {product.name}
                 </Product>
             </Link>
         ) : (
