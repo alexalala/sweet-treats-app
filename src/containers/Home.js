@@ -3,11 +3,12 @@ import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+import ProductCard from '../components/product/ProductCard';
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 
 function Home() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
     const { isAuthenticated } = useAppContext();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -34,14 +35,12 @@ function Home() {
     function renderProductsList(products) {
         return [{}].concat(products).map((product, i) => i !== 0 ? (
             <Link key={product.productId} to={`/product/${product.productId}`}>
-                <Product>
-                    {product.productName}
-                </Product>
+                <ProductCard product={product} />
             </Link>
         ) : (
             <Link key="new" to="/product/new">
                 <ButtonLink>
-                    <b>{"\uFF0B"}</b> Create a new note
+                    <b>{"\uFF0B"}</b> Create a new product
                 </ButtonLink>
             </Link>
         ));
@@ -101,10 +100,6 @@ const ButtonLink = styled.div`
     border: 1px solid black;
     width: 12rem;
     padding: 1rem;
-    font-size: 1.25rem;
-`;
-
-const Product = styled.li`
     font-size: 1.25rem;
 `;
 

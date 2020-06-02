@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { API } from "aws-amplify";
 
 import Button from "../components/simple/Button";
-import { Input, TextareaInput, InputContainer, InputLabel } from "../components/simple/FormElements";
+import { Input, TextareaInput, InputContainer, InputLabel, FileInput, FileUploadButton } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import config from "../config";
@@ -94,8 +94,11 @@ export default function AddProduct() {
                 </InputContainer>
                 <InputContainer>
                     <InputLabel>
-                        Attachment
-                        <Input onChange={handleFileChange} type="file" id="file" />
+                        Product image
+                        <FileInput onChange={handleFileChange} type="file" id="file"/>
+                        <FileUploadButton>
+                            <span>Choose an image</span>
+                        </FileUploadButton>
                     </InputLabel>
                 </InputContainer>
                 <Button

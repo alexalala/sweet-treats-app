@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import { API, Storage } from "aws-amplify";
 
-import { Input, TextareaInput, InputContainer, InputLabel } from "../components/simple/FormElements";
+import { Input, TextareaInput, InputContainer, InputLabel, FileInput, FileUploadButton } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import Button from "../components/simple/Button";
@@ -29,7 +29,7 @@ export default function Product() {
                 const product = await loadProduct();
                 const { productName, price, description, attachment } = product;
                 if (attachment) {
-                    product.attachmentURL = await Storage.vault.get(attachment);
+                    product.attachmentURL = await Storage.get(attachment);
                 }
                 setName(productName);
                 setPrice(price);
@@ -162,12 +162,17 @@ export default function Product() {
                                 </ImageLink>
                         </InputContainer>
                     )}
-                    <div>
-                        {!product.attachment &&
-                            <InputLabel>Choose An Image:</InputLabel>
-                        }
-                        <input onChange={handleFileChange} type="file" />
-                    </div>
+                    <InputContainer>
+                        <InputLabel>
+                            {!product.attachment &&
+                                <span>Choose An Image:</span>
+                            }
+                            <FileInput onChange={handleFileChange} type="file" id="file"/>
+                            <FileUploadButton>
+                                <span>Choose an image</span>
+                            </FileUploadButton>
+                        </InputLabel>
+                    </InputContainer>
                     <ButtonContainer>
                         <Button
                             type="submit"
