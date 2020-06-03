@@ -12,12 +12,14 @@ export default function ProductCard({ product }) {
                 <Image src={attachmentUrl} alt=""/>
             }
             <p>{productName}</p>
-            <p>{price}</p>
+            <p>£{price}</p>
         </div>
     );
 }
 
 const Image = styled.img`
-    max-width: 15rem;
+    height: 15rem;
+    width: 15rem;
     margin-bottom: 8px;
+    object-fit: cover;
 `;
