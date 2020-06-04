@@ -7,6 +7,7 @@ import { Input, TextareaInput, InputContainer, InputLabel, FileInput, FileUpload
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
 import Button from "../components/simple/Button";
+import LinkButton from "../components/simple/LinkButton";
 import config from "../config";
 
 export default function Product() {
@@ -174,6 +175,7 @@ export default function Product() {
                         </InputLabel>
                     </InputContainer>
                     <ButtonContainer>
+                        <LinkButton url="/" text="Cancel" />
                         <Button
                             type="submit"
                             isLoading={isLoading}

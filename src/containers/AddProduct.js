@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
+import styled from 'styled-components';
 import { API } from "aws-amplify";
 
 import Button from "../components/simple/Button";
+import LinkButton from "../components/simple/LinkButton";
 import { Input, TextareaInput, InputContainer, InputLabel, FileInput, FileUploadButton } from "../components/simple/FormElements";
 import { onError } from "../libs/errorLib";
 import { s3Upload } from "../libs/awsLib";
@@ -100,15 +102,25 @@ export default function AddProduct() {
                             <span>Choose an image</span>
                         </FileUploadButton>
                     </InputLabel>
+
                 </InputContainer>
-                <Button
-                    type="submit"
-                    isLoading={isLoading}
-                    disabled={!validateForm()}
-                >
-                    Create
-                </Button>
+                <ButtonContainer>
+                    <LinkButton url="/" text="Cancel" />
+                    <Button
+                        type="submit"
+                        isLoading={isLoading}
+                        disabled={!validateForm()}
+                    >
+                        Create
+                    </Button>
+                </ButtonContainer>
             </form>
         </div>
     );
 }
+
+const ButtonContainer = styled.div`
+    display: flex;
+    margin: 1rem auto;
+    width: 15rem;
+`;

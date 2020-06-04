@@ -21,7 +21,7 @@ const StyledButton = styled.button`
     justify-content: center;
     height: 3rem;
     padding: 0.75rem;
-    margin: 0.5rem auto;
+    margin: 0.5rem;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
