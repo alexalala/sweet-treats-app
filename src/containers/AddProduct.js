@@ -111,6 +111,7 @@ export default function AddProduct() {
                         isLoading={isLoading}
                         disabled={!validateForm()}
                     >
+                        <Icon className="fas fa-plus"></Icon>
                         Create
                     </Button>
                 </ButtonContainer>
@@ -123,4 +124,9 @@ const ButtonContainer = styled.div`
     display: flex;
     margin: 1rem auto;
     width: 15rem;
+`;
+
+const Icon = styled.i`
+    margin-right: 5px;
+    font-size: 0.75rem;
 `;

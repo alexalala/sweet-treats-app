@@ -11,6 +11,7 @@ import { onError } from "./libs/errorLib";
 import { AppContext } from "./libs/contextLib";
 
 import './App.css';
+import './styles/external/fontawesome.css';
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
