@@ -52,4 +52,10 @@ export const InputLabel = styled.label`
     flex-direction: column;
 `;
 
+export const ButtonContainer = styled.div`
+    display: flex;
+    margin: 1rem auto;
+    width: 15rem;
+`;
+
 export default Input;

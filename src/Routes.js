@@ -7,13 +7,14 @@ import UnauthenticatedRoute from
 "./components/UnauthenticatedRoute";
 
 
-import Signup from "./containers/Signup";
-import Home from "./containers/Home";
-import NotFound from "./containers/NotFound";
-import Login from "./containers/Login";
-import AddProduct from "./containers/AddProduct";
-import Product from "./containers/Product";
-import Settings from "./containers/Settings";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import AddProduct from "./pages/AddProduct";
+import Product from "./pages/Product";
+import Settings from "./pages/Settings";
+import Products from "./pages/seller/Products";
 
 export default function Routes() {
     return (
@@ -35,6 +36,9 @@ export default function Routes() {
             </AuthenticatedRoute>
             <AuthenticatedRoute exact path="/product/:id">
                 <Product />
+            </AuthenticatedRoute>
+            <AuthenticatedRoute exact path="/my-products">
+                <Products />
             </AuthenticatedRoute>
             <Route>
                 <NotFound />

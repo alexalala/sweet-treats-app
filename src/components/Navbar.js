@@ -23,6 +23,11 @@ function Navbar({ auth, handleLogout }) {
                                     </Link>
                                 </NavItem>
                                 <NavItem>
+                                    <Link to="/my-products">
+                                        My Products
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
                                     <button type="button" onClick={() => handleLogout()}>Log out</button>
                                 </NavItem>
                             </>

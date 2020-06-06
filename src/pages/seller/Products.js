@@ -3,11 +3,11 @@ import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-import ProductCard from '../components/product/ProductCard';
-import { useAppContext } from "../libs/contextLib";
-import { onError } from "../libs/errorLib";
+import ProductCard from '../../components/product/ProductCard';
+import { useAppContext } from "../../libs/contextLib";
+import { onError } from "../../libs/errorLib";
 
-function Home() {
+function Products() {
     const [products, setProducts] = useState(null);
     const { isAuthenticated } = useAppContext();
     const [isLoading, setIsLoading] = useState(true);
@@ -46,44 +46,19 @@ function Home() {
         ));
     }
 
-    function renderLander() {
-        return (
-            <div>
-                <h2>Welcome to Sweet Treats Delivered!</h2>
-                <h3>Here you can purchase some sweet treats for you or someone you love</h3>
-                <div>
-                    <StyledLink to="/login">
-                        Login
-                    </StyledLink>
-                    <StyledLink to="/signup">
-                        Signup
-                    </StyledLink>
-                </div>
-            </div>
-        );
-    }
-
-    function renderProducts() {
-        return (
-            <div>
-                <h2>Your Products</h2>
-                <ProductList>
-                    <ProductsContainer>
-                        {!isLoading && renderProductsList(products)}
-                    </ProductsContainer>
-                </ProductList>
-            </div>
-        );   
-    }
-
     return (
         <div>
-            {isAuthenticated ? renderProducts() : renderLander()}
+            <h2>Your Products</h2>
+            <ProductList>
+                <ProductsContainer>
+                    {!isLoading && renderProductsList(products)}
+                </ProductsContainer>
+            </ProductList>
         </div>
     );
 }
 
-export default Home;
+export default Products;
 
 const ProductList = styled.ul`
     list-style-type: none;
@@ -110,15 +85,5 @@ const ButtonLink = styled.div`
     padding: 1rem;
     align-items: center;
     height: 13rem;
-    font-size: 1.25rem;
-`;
-
-const StyledLink = styled(Link)`
-    color: white;
-    margin: 1rem;
-    padding: 0.5rem;
-    border: 1px solid black;
-    border-radius: 26%;
-    text-decoration: none;
     font-size: 1.25rem;
 `;
