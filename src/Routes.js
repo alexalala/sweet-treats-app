@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import AddProduct from "./pages/AddProduct";
 import Product from "./pages/Product";
 import Settings from "./pages/Settings";
+import PLP from "./pages/PLP";
 import Products from "./pages/seller/Products";
 
 export default function Routes() {
@@ -27,6 +28,9 @@ export default function Routes() {
             </UnauthenticatedRoute>
             <UnauthenticatedRoute exact path="/signup">
                 <Signup />
+            </UnauthenticatedRoute>
+            <UnauthenticatedRoute exact path="/products">
+                <PLP />
             </UnauthenticatedRoute>
             <AuthenticatedRoute exact path="/settings">
                 <Settings />
